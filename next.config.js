@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+    experimental: {
+        appDir: true,
+    },
+    reactStrictMode: true,
+    images: {
+        domains: ["crealoka.s3.ap-southeast-1.amazonaws.com", "s3.ap-southeast-1.amazonaws.com"],
+        formats: ["image/avif", "image/webp"],
+    },
 };
 
 module.exports = nextConfig;

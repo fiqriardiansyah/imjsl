@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+@layer {
+    .select-car__input {
+        @apply !text-white;
+    }
+    .select-car__control {
+        @apply !bg-primary-dark !text-white !border-primary-dark !shadow-[1px_3px_5px_rgba(0,0,0,0.4)] p-1;
+    }
+    .select-car__placeholder {
+        @apply !text-white;
+    }
+    .select-car__indicator-separator {
+        @apply !bg-primary-light;
+    }
+    .select-car__single-value {
+        @apply !text-white !capitalize;
+    }
+    .input-search {
+        @apply bg-white w-full !shadow-[1px_3px_5px_rgba(0,0,0,0.4)] !rounded-md !p-3 !text-base focus:outline-primary-dark;
+    }
+    .button-search {
+        @apply !bg-primary-dark !text-white !w-fit !px-7 !py-2 !flex !items-center !rounded-md !gap-1;
+    }
+}
