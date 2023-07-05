@@ -4,8 +4,8 @@ import Navbar from "@/components/navbar";
 import SelectBrand from "@/components/select";
 import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next-nprogress-bar";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Logo from "../public/jsl-catalogue.svg";
 import Jumbotron from "../public/jumbotron.png";
@@ -26,7 +26,12 @@ export default function Page() {
     return (
         <div className="min-h-screen">
             <Navbar className="flex justify-center">
-                <Image src={Logo} alt="jsl e-catalogue" height={25} />
+                <Image
+                    src={Logo}
+                    alt="jsl e-catalogue"
+                    height={25}
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                />
             </Navbar>
             <div className="mt-[50px] flex flex-col items-center">
                 <div className="relative">

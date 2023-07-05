@@ -5,7 +5,7 @@ import "@/utils/extension";
 import { Metadata } from "next";
 import "react-18-image-lightbox/style.css";
 
-export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const slug = params?.slug?.split("-").join(" ") || "";
     const product = await getProduct(params?.slug);
 
@@ -15,7 +15,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
         openGraph: {
             title: product?.data?.product_name,
             description: product?.data?.product_model + ", " + product?.data?.product_description,
-            url: "https://imjsl.com/" + slug,
+            url: "https://imjsl.co.id/" + slug,
             siteName: "JSL",
             images: product.data?.product_images?.map((img) => ({
                 url: img,

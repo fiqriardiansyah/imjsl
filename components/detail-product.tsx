@@ -8,7 +8,7 @@ import { useState } from "react";
 import Lightbox from "react-18-image-lightbox";
 
 const DetailProduct = ({ product }: { product?: ProductDetail }) => {
-    const [activeImage, setActiveImage] = useState<any>(product?.product_images?.length ? product?.product_images[0] : "/image-error.png");
+    const [activeImage, setActiveImage] = useState<any>(product?.product_images?.length ? product?.product_images[0] : "/image-empty.png");
     const [showImage, setShowImage] = useState({ show: false, random: 0 });
 
     const onSetActiveImage = (img: any) => {
@@ -23,7 +23,6 @@ const DetailProduct = ({ product }: { product?: ProductDetail }) => {
 
     return (
         <>
-            {" "}
             {showImage.show && (
                 <Lightbox
                     onImageLoad={() => setShowImage((prev) => ({ ...prev, random: Math.random() }))}

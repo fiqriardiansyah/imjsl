@@ -1,12 +1,12 @@
 import CardProduct from "@/components/card-product";
-import Head from "next/head";
 import { PageProps } from "@/models";
 import { getBrand, search } from "@/service";
 import Error from "./error";
 import { Metadata } from "next";
+import Link from "next/link";
 
-export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
-    const query = params?.query || "";
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+    const query = searchParams?.query || "";
 
     return {
         title: `Hasil pencarian ${query} | JSL`,
@@ -24,12 +24,8 @@ export default async function Search({ searchParams }: PageProps) {
 
     return (
         <>
-            <Head>
-                <title>Hasil pencarian {searchParams?.query} | JSL</title>
-                <meta name="description" content={searchParams?.query + " | JSL"} />
-            </Head>
             {searchRes?.data?.product_list?.length ? (
-                <h1 className="text-gray-400">
+                <h1 className="text-gray-400 mb-5">
                     Hasil pencarian untuk <br />
                     <span className="capitalize text-black font-semibold">
                         {brandName?.CapitalizeEachFirstLetter() + " " + (searchParams?.query || "")?.toString()?.CapitalizeEachFirstLetter()}
@@ -38,50 +34,12 @@ export default async function Search({ searchParams }: PageProps) {
             ) : null}
             <div className="grid grid-cols-2 gap-2">
                 {searchRes.data?.product_list?.map((product, i) => (
-                    <CardProduct product={product} key={product.slug + i} />
+                    <Link href={"/" + product?.slug} key={product.product_name + i}>
+                        <CardProduct product={product} />
+                    </Link>
                 ))}
             </div>
             {!searchRes.data?.product_list?.length ? <Error /> : null}
         </>
     );
-
-    // const router = useRouter();
-    // const { query, brand } = router.query;
-
-    // const searchQuery = useQuery(["query", query, brand], () => search(query, brand));
-    // const brandQuery = useQuery(["get-brand"], getBrand, { enabled: !!brand });
-
-    // const brandName = brandQuery.data?.data?.find((el) => el.brand_id?.toString() === (brand as any))?.brand_name || "";
-
-    // return (
-    //     <>
-    //         <div className="min-h-screen mt-[50px]">
-    //             <div className="flex flex-col gap-5 container mx-auto px-4 py-4">
-    //                 <StateRender
-    //                     data={searchQuery.data?.data?.product_list?.length}
-    //                     isLoading={searchQuery.isLoading}
-    //                     isError={searchQuery.isError}
-    //                     isEmpty={searchQuery.data?.data?.product_list?.length === 0}
-    //                 >
-    //                     <StateRender.Data>
-
-    //                     </StateRender.Data>
-    //                     <StateRender.Loading>
-    //                         <div className="grid grid-cols-2 gap-2">
-    //                             {[...new Array(5)].map((_, i) => (
-    //                                 <CardProduct.Loading key={i} />
-    //                             ))}
-    //                         </div>
-    //                     </StateRender.Loading>
-    //                     <StateRender.Empty>
-    //                         <div className="flex flex-col items-center justify-center h-[400px]">
-    //                             <Image src={Empty} alt="not found" />
-    //                             <h1 className="text-gray-400 m-0 text-center text-xs mt-10">Maaf hasil pencarian tidak ditemukan</h1>
-    //                         </div>
-    //                     </StateRender.Empty>
-    //                 </StateRender>
-    //             </div>
-    //         </div>
-    //     </>
-    // );
 }

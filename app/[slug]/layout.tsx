@@ -2,7 +2,7 @@
 
 import Navbar from "@/components/navbar";
 import { PageProps } from "@/models";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import React from "react";
 import { BiArrowBack } from "react-icons/bi";
 
@@ -10,7 +10,7 @@ export default function Layout({ children, params }: PageProps & { children: Rea
     const router = useRouter();
     return (
         <>
-            <Navbar className="flex">
+            <Navbar className="">
                 <BiArrowBack
                     onClick={router.back}
                     className="text-white text-2xl absolute left-4 active:text-gray-300 hover:text-gray-300 cursor-pointer"
