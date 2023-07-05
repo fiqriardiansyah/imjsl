@@ -20,10 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
                     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
                 </head>
-                <body className="container mx-auto md:w-[350px] shadow-2xl bg-white">
+                <body className="container mx-auto md:w-[350px] shadow-2xl bg-white relative">
                     {children}
                     <Footer />
-                    <ProgressBar height="4px" color="#FFFFFF" options={{ showSpinner: true, parent: "body" }} shallowRouting />
+                    <ProgressBar height="4px" color="#4E4FEB" options={{ showSpinner: true, parent: "body" }} shallowRouting />
                 </body>
             </html>
         </>
