@@ -34,7 +34,7 @@ export default async function Search({ searchParams }: PageProps) {
             ) : null}
             <div className="grid grid-cols-2 gap-2">
                 {searchRes.data?.product_list?.map((product, i) => (
-                    <Link href={"/" + product?.slug} key={product.product_name + i}>
+                    <Link href={"/" + encodeURIComponent(product?.slug)} key={product.product_name + i}>
                         <CardProduct product={product} />
                     </Link>
                 ))}
