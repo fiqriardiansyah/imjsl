@@ -2,13 +2,14 @@
 
 import { ProductDetail } from "@/models";
 import "@/utils/extension";
-import HTMLReactParser from "html-react-parser";
 import Image from "next/image";
 import { useState } from "react";
 import Lightbox from "react-18-image-lightbox";
+import ImageEmpty from "@/public/image-empty.png";
+import ImageError from "@/public/image-error.png";
 
 const DetailProduct = ({ product }: { product?: ProductDetail }) => {
-    const [activeImage, setActiveImage] = useState<any>(product?.product_images?.length ? product?.product_images[0] : "/image-empty.png");
+    const [activeImage, setActiveImage] = useState<any>(product?.product_images?.length ? product?.product_images[0] : ImageEmpty);
     const [showImage, setShowImage] = useState({ show: false, random: 0 });
 
     const onSetActiveImage = (img: any) => {
@@ -51,6 +52,7 @@ const DetailProduct = ({ product }: { product?: ProductDetail }) => {
                         priority
                         fill
                         quality={100}
+                        onError={() => setActiveImage(ImageError)}
                     />
                 </div>
                 <div className="grid grid-cols-3 gap-3 w-full p-3">
@@ -82,7 +84,7 @@ const DetailProduct = ({ product }: { product?: ProductDetail }) => {
                     <div className="w-full bg-gray-200 my-5" style={{ height: "1px" }}></div>
 
                     <span className="text-gray-400 text-sm">Deskripsi Produk</span>
-                    <h2 className="text-gray-500 m-0 font-medium mt-1">{HTMLReactParser(product?.product_description || "-")}</h2>
+                    <h2 className="text-gray-500 m-0 font-medium mt-1">{product?.product_description || "-"}</h2>
                 </div>
             </div>
         </>

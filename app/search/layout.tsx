@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { BiArrowBack } from "react-icons/bi";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <Navbar className="">
@@ -23,4 +23,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="min-h-screen mt-[50px] p-3">{children}</div>
         </>
     );
-}
+};
+
+export default Layout;
